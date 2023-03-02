@@ -1,260 +1,211 @@
 <!DOCTYPE html>
 <html lang="">
     <!-- title -->
-
-
-
-
 <!-- keywords -->
-
-
-
-
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
+    <meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="author" content="John Doe">
     <meta name="renderer" content="webkit">
     <meta name="copyright" content="John Doe">
-    
     <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
-    
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>刘兴龙博客</title>
     <style type="text/css">
-    @font-face {
-        font-family: 'Oswald-Regular';
-        src: url("/font/Oswald-Regular.ttf");
-    }
-
-    body {
-        margin: 0;
-    }
-
-    header,
-    footer,
-    .back-top,
-    .sidebar,
-    .container,
-    .site-intro-meta,
-    .toc-wrapper {
-        display: none;
-    }
-
-    .site-intro {
-        position: relative;
-        z-index: 3;
-        width: 100%;
-        /* height: 50vh; */
-        overflow: hidden;
-    }
-
-    .site-intro-placeholder {
-        position: absolute;
-        z-index: -2;
-        top: 0;
-        left: 0;
-        width: calc(100% + 300px);
-        height: 100%;
-        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
-        background-position: center center;
-        transform: translate3d(-226px, 0, 0);
-        animation: gradient-move 2.5s ease-out 0s infinite;
-    }
-
-    @keyframes gradient-move {
-        0% {
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url("/font/Oswald-Regular.ttf");
+        }
+        body {
+            margin: 0;
+        }
+        header,
+        footer,
+        .back-top,
+        .sidebar,
+        .container,
+        .site-intro-meta,
+        .toc-wrapper {
+            display: none;
+        }
+        .site-intro {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            /* height: 50vh; */
+            overflow: hidden;
+        }
+        .site-intro-placeholder {
+            position: absolute;
+            z-index: -2;
+            top: 0;
+            left: 0;
+            width: calc(100% + 300px);
+            height: 100%;
+            background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+            background-position: center center;
             transform: translate3d(-226px, 0, 0);
+            animation: gradient-move 2.5s ease-out 0s infinite;
         }
-        100% {
-            transform: translate3d(0, 0, 0);
+        @keyframes gradient-move {
+            0% {
+                transform: translate3d(-226px, 0, 0);
+            }
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
         }
-    }
-
-</style>
-
+    </style>
     <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
-    
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)"> 
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-/* This file is meant as a standalone workflow for
-- testing support for link[rel=preload]
-- enabling async CSS loading in browsers that do not support rel=preload
-- applying rel preload css once loaded, whether supported or not.
-*/ -->
-<script>
-(function( w ){
-	"use strict";
-	// rel=preload support test
-	if( !w.loadCSS ){
-		w.loadCSS = function(){};
-	}
-	// define on the loadCSS obj
-	var rp = loadCSS.relpreload = {};
-	// rel=preload feature support test
-	// runs once and returns a function for compat purposes
-	rp.support = (function(){
-		var ret;
-		try {
-			ret = w.document.createElement( "link" ).relList.supports( "preload" );
-		} catch (e) {
-			ret = false;
-		}
-		return function(){
-			return ret;
-		};
-	})();
+    /* This file is meant as a standalone workflow for
+    - testing support for link[rel=preload]
+    - enabling async CSS loading in browsers that do not support rel=preload
+    - applying rel preload css once loaded, whether supported or not.
+    */ -->
+    <script>
+        (function( w ){
+            "use strict";
+            // rel=preload support test
+            if( !w.loadCSS ){
+                w.loadCSS = function(){};
+            }
+            // define on the loadCSS obj
+            var rp = loadCSS.relpreload = {};
+            // rel=preload feature support test
+            // runs once and returns a function for compat purposes
+            rp.support = (function(){
+                var ret;
+                try {
+                    ret = w.document.createElement( "link" ).relList.supports( "preload" );
+                } catch (e) {
+                    ret = false;
+                }
+                return function(){
+                    return ret;
+                };
+            })();
 
-	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
-	// then change that media back to its intended value on load
-	rp.bindMediaToggle = function( link ){
-		// remember existing media attr for ultimate state, or default to 'all'
-		var finalMedia = link.media || "all";
+            // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+            // then change that media back to its intended value on load
+            rp.bindMediaToggle = function( link ){
+                // remember existing media attr for ultimate state, or default to 'all'
+                var finalMedia = link.media || "all";
 
-		function enableStylesheet(){
-			link.media = finalMedia;
-		}
+                function enableStylesheet(){
+                    link.media = finalMedia;
+                }
 
-		// bind load handlers to enable media
-		if( link.addEventListener ){
-			link.addEventListener( "load", enableStylesheet );
-		} else if( link.attachEvent ){
-			link.attachEvent( "onload", enableStylesheet );
-		}
+                // bind load handlers to enable media
+                if( link.addEventListener ){
+                    link.addEventListener( "load", enableStylesheet );
+                } else if( link.attachEvent ){
+                    link.attachEvent( "onload", enableStylesheet );
+                }
 
-		// Set rel and non-applicable media type to start an async request
-		// note: timeout allows this to happen async to let rendering continue in IE
-		setTimeout(function(){
-			link.rel = "stylesheet";
-			link.media = "only x";
-		});
-		// also enable media after 3 seconds,
-		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
-		setTimeout( enableStylesheet, 3000 );
-	};
+                // Set rel and non-applicable media type to start an async request
+                // note: timeout allows this to happen async to let rendering continue in IE
+                setTimeout(function(){
+                    link.rel = "stylesheet";
+                    link.media = "only x";
+                });
+                // also enable media after 3 seconds,
+                // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+                setTimeout( enableStylesheet, 3000 );
+            };
 
-	// loop through link elements in DOM
-	rp.poly = function(){
-		// double check this to prevent external calls from running
-		if( rp.support() ){
-			return;
-		}
-		var links = w.document.getElementsByTagName( "link" );
-		for( var i = 0; i < links.length; i++ ){
-			var link = links[ i ];
-			// qualify links to those with rel=preload and as=style attrs
-			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
-				// prevent rerunning on link
-				link.setAttribute( "data-loadcss", true );
-				// bind listeners to toggle media back
-				rp.bindMediaToggle( link );
-			}
-		}
-	};
+            // loop through link elements in DOM
+            rp.poly = function(){
+                // double check this to prevent external calls from running
+                if( rp.support() ){
+                    return;
+                }
+                var links = w.document.getElementsByTagName( "link" );
+                for( var i = 0; i < links.length; i++ ){
+                    var link = links[ i ];
+                    // qualify links to those with rel=preload and as=style attrs
+                    if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+                        // prevent rerunning on link
+                        link.setAttribute( "data-loadcss", true );
+                        // bind listeners to toggle media back
+                        rp.bindMediaToggle( link );
+                    }
+                }
+            };
 
-	// if unsupported, run the polyfill
-	if( !rp.support() ){
-		// run once at least
-		rp.poly();
+            // if unsupported, run the polyfill
+            if( !rp.support() ){
+                // run once at least
+                rp.poly();
 
-		// rerun poly on an interval until onload
-		var run = w.setInterval( rp.poly, 500 );
-		if( w.addEventListener ){
-			w.addEventListener( "load", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		} else if( w.attachEvent ){
-			w.attachEvent( "onload", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		}
-	}
-
-
-	// commonjs
-	if( typeof exports !== "undefined" ){
-		exports.loadCSS = loadCSS;
-	}
-	else {
-		w.loadCSS = loadCSS;
-	}
-}( typeof global !== "undefined" ? global : this ) );
-</script>
-
+                // rerun poly on an interval until onload
+                var run = w.setInterval( rp.poly, 500 );
+                if( w.addEventListener ){
+                    w.addEventListener( "load", function(){
+                        rp.poly();
+                        w.clearInterval( run );
+                    } );
+                } else if( w.attachEvent ){
+                    w.attachEvent( "onload", function(){
+                        rp.poly();
+                        w.clearInterval( run );
+                    } );
+                }
+            }
+            // commonjs
+            if( typeof exports !== "undefined" ){
+                exports.loadCSS = loadCSS;
+            }
+            else {
+                w.loadCSS = loadCSS;
+            }
+        }( typeof global !== "undefined" ? global : this ) );
+    </script>
     <link rel="icon" href="/assets/favicon.ico">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
     <link rel="preload" href="/scripts/main.js" as="script">
     <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin="">
-    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin="">
-    
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin="">  
     <!-- fancybox -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
-    <!-- 百度统计  -->
-    
-    <!-- 谷歌统计  -->
-    
+    <!-- 百度统计  -->    
+    <!-- 谷歌统计  --> 
 </head>
-
-    
-        <body class="home-body">
-    
-    
+<body class="home-body">
 <header class="header index-header">
-
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
     <a class="home-link" href="/">欢迎来到我的空间</a>
 </header>
     <div class="wrapper">
-        <div class="site-intro" style="
-
-
-
-
-
-
-
-height:50vh;
-">
-    
+        <div class="site-intro" style="height:50vh;">
     <!-- 主页  -->
-    
-    
-    <!-- 文章页  -->
-            
+    <!-- 文章页  -->      
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
             欢迎来到我的空间
             <!-- 文章页  -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
-            <!-- 主页副标题  -->
-            
-            
+            <!-- 主页副标题  -->                   
                 感谢阅读
-            
-            <!-- 文章页  -->
-            
+            <!-- 文章页  -->    
         </p>
         <!-- 文章页meta -->
-        
     </div>
 </div>
-        <script>
+<script>
  
   // get user agent
   var browser = {
@@ -349,39 +300,38 @@ height:50vh;
     "/lib/webfontloader.min.js"
   ], asyncCb, asyncErr)
 </script>        
-        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
-        <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
+    <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+    <div class="container container-unloaded">
+    <main class="main index-page">
+        <article class="index-post">
+            <a class="abstract-title" href="/2018/12/12/firstblog/">
+                    <span>工作经历</span>
+            </a>
+            <div class="abstract-content">
+                <h3>易拓客APP客户端</h3>
+                <h4>项目描述</h4>
+                <p>APP出设计稿，交互界面和视觉效果呈现，字体图标库建立.
+                完达山商城装修改版</p>
+                <p>负责版面设计与详情页页面填充，H5页面设计，整体网站的搭建</p>
+                <h4>教育经历</h4>
+                <p>吉林农业大学  计算机与科学与技术  本科  2021.1-2023.7</p>
+                <h4>自我评价</h4>
+                <p>性格慢热，但大方开朗。喜欢结交朋友，人缘还算不错，做事比较执着，凭能力做事</p>
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/12/12</span>
+                </div>
+                <!-- tags  -->
+            </div>
+        </article>
     <article class="index-post">
-        <a class="abstract-title" href="/2018/12/12/firstblog/">
-            
-                <span>工作经历</span>
+        <a class="abstract-title" href="/2018/12/12/hello-world/">         
+                <span>技术</span>
         </a>
         <div class="abstract-content">
-            项目经验易拓客APP客户端
-
-项目描述
-
-<p>APP出设计稿，交互界面和视觉效果呈现，字体图标库建立.
-完达山商城装修改版</p>
-
-项目描述
-
-负责版面设计与详情页页面填充，H5页面设计，整体网站的搭建
-
-教育经历
-吉林农业大学  计算机与科学与技术  本科  2021.1-2023.7
-
-自我评价
-性格慢热，但大方开朗。喜欢结交朋友，人缘还算不错，做事比较执着，凭能力做事！
-
-
+            想法 Hexo 想法 documentation 想法 troubleshooting 想法， GitHub.技术技术1$  "技术"More info: WritingRun server1$ 技术More info: ServerGenerate static files1$ 技术More info: GeneratingDeploy to remote sites1$ 技术More info: Deployment
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -392,196 +342,41 @@ height:50vh;
             
         </div>
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2018/12/12/hello-world/">
-            
-                <span>1简历</span>
-        </a>
-        <div class="abstract-content">
-            想法 Hexo 想法 documentation 想法 troubleshooting 想法， GitHub.
-技术技术1$  "技术"
-More info: Writing
-Run server1$ 技术
-More info: Server
-Generate static files1$ 技术
-More info: Generating
-Deploy to remote sites1$ 技术
-More info: Deployment
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/12/12</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
-    
-</main>
-            <!-- profile -->
-            
+    </main>
+            <!-- profile --> 
             <div class="profile">
     <img class="profile-avatar" alt="avatar" src="http://img.zcool.cn/community/0143ff58cd1717a801219c779fdc0d.jpg@3000w_1l_2o_100sh.jpg">
-    <div class="profile-name">XingLong</div>
+    <div class="profile-name">刘兴龙</div>
     
     <div class="profile-signature">
-        程序一枚
+        前端
     </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
-            
-                <a href="mailto://15694503357@163.com" class="iconfont-archer email" title="email"></a>
-            
-        
-    
-        
-            
+    <div class="profile-social">  
+                <a href="mailto://15694503357@163.com" class="iconfont-archer email" title="email"></a>            
                 <a href="//github.com/liu-xinglong/liu-xinglong.github.io" class="iconfont-archer github" target="_blank" title="github"></a>
-            
-        
-    
-        
-            
                 <span class="iconfont-archer wechat" title="wechat">
-                  
                   <img class="profile-qr" src="/assets/example_qr.png">
                 </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
     </div>
-    
-    
         <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-            
-                
-            
-                
-            
+            <div>我的经历</div>
         </div>
-    
-    
         <div class="about-me">
-            <a href="/about">ABOUT ME</a>
+            <a href="/about">关于</a>
         </div>
-    
 </div>
             
         </div>
         <footer class="footer footer-unloaded">
     <!-- social  -->
     
-    <div class="social">
-        
-    
-        
-            
-                <a href="mailto://15694503357@163.com" class="iconfont-archer email" title="email"></a>
-            
-        
-    
-        
-            
+    <div class="social">  
+                <a href="mailto://15694503357@163.com" class="iconfont-archer email" title="email"></a>         
                 <a href="//github.com/liu-xinglong/liu-xinglong.github.io" class="iconfont-archer github" target="_blank" title="github"></a>
-            
-        
-    
-        
-            
                 <span class="iconfont-archer wechat" title="wechat">
-                  
                   <img class="profile-qr" src="/assets/example_qr.png">
                 </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
     </div>
     
     <!-- powered by Hexo  -->
@@ -604,71 +399,35 @@ More info: Deployment
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
     <ul class="sidebar-tabs sidebar-tabs-active-0">
-        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
-        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
-        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">首页</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">标题</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">文档</span></li>
     </ul>
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
-    <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <!-- 在ejs中将archive按照时间排序 -->    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 2
+        侧边栏
         </div>
         <!-- search  -->
-        
     </div>
-    
     <div class="post-archive">
-    
-    
-    
-    
-    <div class="archive-year"> Invalid date </div>
+    <div class="archive-year"> 2023 </div>
     <ul class="year-list">
-    
-    
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2018/12/12/hello-world/">简历</a>
+            <span class="archive-post-date">1</span><a class="archive-post-title" href="/2018/12/12/hello-world/">技术</a>
         </li>
-    
-    
-    
-    
-    
         </ul>
-    
-    <div class="archive-year"> 2018 </div>
+    <div class="archive-year"> 2023 </div>
     <ul class="year-list">
-    
-    
         <li class="archive-post-item">
-            <span class="archive-post-date">12/12</span><a class="archive-post-title" href="/2018/12/12/firstblog/">XingLong</a>
+            <span class="archive-post-date">3/2</span><a class="archive-post-title" href="/2018/12/12/firstblog/">经历</a>
         </li>
-    
     </ul></div>
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
-    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -725,17 +484,10 @@ jsonContent:
     </script>
     <script src="/scripts/main.js"></script>
     <!-- algolia -->
-    
     <!-- busuanzi  -->
-    
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
     <!-- CNZZ  -->
-    
     </div>
     <!-- async load share.js -->
-     
-    </body>
+</body>
 </html>
-
-
