@@ -6,14 +6,14 @@
     <meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="author" content="John Doe">
+    <meta name="author" content="Angus">
     <meta name="renderer" content="webkit">
-    <meta name="copyright" content="John Doe">
+    <meta name="copyright" content="Angus">
     <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>刘兴龙博客</title>
+    <title>Angus</title>
     <style type="text/css">
         @font-face {
             font-family: 'Oswald-Regular';
@@ -61,12 +61,6 @@
     </style>
     <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)"> 
-    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-    /* This file is meant as a standalone workflow for
-    - testing support for link[rel=preload]
-    - enabling async CSS loading in browsers that do not support rel=preload
-    - applying rel preload css once loaded, whether supported or not.
-    */ -->
     <script>
         (function( w ){
             "use strict";
@@ -181,306 +175,308 @@
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    <a class="home-link" href="/">欢迎来到我的空间</a>
+    <a class="home-link" href="/">首页</a>
 </header>
     <div class="wrapper">
         <div class="site-intro" style="height:50vh;">
-    <!-- 主页  -->
-    <!-- 文章页  -->      
-    <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
-    <div class="site-intro-meta">
-        <!-- 标题  -->
-        <h1 class="intro-title">
             <!-- 主页  -->
-            欢迎来到我的空间
             <!-- 文章页  -->
-        </h1>
-        <!-- 副标题 -->
-        <p class="intro-subtitle">
-            <!-- 主页副标题  -->                   
-                感谢阅读
-            <!-- 文章页  -->    
-        </p>
-        <!-- 文章页meta -->
-    </div>
-</div>
-<script>
- 
-  // get user agent
-  var browser = {
-    versions: function () {
-      var u = window.navigator.userAgent;
-      return {
-        userAgent: u,
-        trident: u.indexOf('Trident') > -1, //IE内核
-        presto: u.indexOf('Presto') > -1, //opera内核
-        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
-        iPad: u.indexOf('iPad') > -1, //是否为iPad
-        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
-        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
-        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
-      };
-    }()
-  }
-  console.log("userAgent:" + browser.versions.userAgent);
-
-  // callback
-  function fontLoaded() {
-    console.log('font loaded');
-    if (document.getElementsByClassName('site-intro-meta')) {
-      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
-      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
-      var postIntros = document.getElementsByClassName('post-intros')[0]
-      if (postIntros) {
-        postIntros.classList.add('post-fade-in');
-      }
-    }
-  }
-
-  // UC不支持跨域，所以直接显示
-  function asyncCb(){
-    if (browser.versions.uc) {
-      console.log("UCBrowser");
-      fontLoaded();
-    } else {
-      WebFont.load({
-        custom: {
-          families: ['Oswald-Regular']
-        },
-        loading: function () {  //所有字体开始加载
-          // console.log('loading');
-        },
-        active: function () {  //所有字体已渲染
-          fontLoaded();
-        },
-        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
-          console.log('inactive: timeout');
-          fontLoaded();
-        },
-        timeout: 5000 // Set the timeout to two seconds
-      });
-    }
-  }
-
-  function asyncErr(){
-    console.warn('script load from CDN failed, will load local script')
-  }
-
-  // load webfont-loader async, and add callback function
-  function async(u, cb, err) {
-    var d = document, t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
-    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
-    s.parentNode.insertBefore(o, s);
-  }
-
-  var asyncLoadWithFallBack = function(arr, success, reject) {
-      var currReject = function(){
-        reject()
-        arr.shift()
-        if(arr.length)
-          async(arr[0], success, currReject)
-        }
-
-      async(arr[0], success, currReject)
-  }
-
-  asyncLoadWithFallBack([
-    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
-    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
-    "/lib/webfontloader.min.js"
-  ], asyncCb, asyncErr)
-</script>        
-    <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
-    <div class="container container-unloaded">
-    <main class="main index-page">
-        <article class="index-post">
-            <a class="abstract-title" href="/2018/12/12/firstblog/">
-                    <span>工作经历</span>
-            </a>
-            <div class="abstract-content">
-                <h3>易拓客APP客户端</h3>
-                <h4>项目描述</h4>
-                <p>APP出设计稿，交互界面和视觉效果呈现，字体图标库建立.
-                完达山商城装修改版</p>
-                <p>负责版面设计与详情页页面填充，H5页面设计，整体网站的搭建</p>
-                <h4>教育经历</h4>
-                <p>吉林农业大学  计算机与科学与技术  本科  2021.1-2023.7</p>
-                <h4>自我评价</h4>
-                <p>性格慢热，但大方开朗。喜欢结交朋友，人缘还算不错，做事比较执着，凭能力做事</p>
+            <div class="site-intro-placeholder"></div>
+            <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+            <div class="site-intro-meta">
+                <!-- 标题  -->
+                <h1 class="intro-title">
+                    <!-- 主页  -->
+                    欢迎来到我的空间
+                    <!-- 文章页  -->
+                </h1>
+                <!-- 副标题 -->
+                <p class="intro-subtitle">
+                    <!-- 主页副标题  -->
+                    感谢阅读
+                    <!-- 文章页  -->
+                </p>
+                <!-- 文章页meta -->
             </div>
-            <div class="abstract-post-meta">
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/12/12</span>
-                </div>
-                <!-- tags  -->
-            </div>
-        </article>
-    <article class="index-post">
-        <a class="abstract-title" href="/2018/12/12/hello-world/">         
-                <span>技术</span>
-        </a>
-        <div class="abstract-content">
-            想法 Hexo 想法 documentation 想法 troubleshooting 想法， GitHub.技术技术1$  "技术"More info: WritingRun server1$ 技术More info: ServerGenerate static files1$ 技术More info: GeneratingDeploy to remote sites1$ 技术More info: Deployment
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/12/12</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    <!-- paginator  -->
-    </main>
-            <!-- profile --> 
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src="http://img.zcool.cn/community/0143ff58cd1717a801219c779fdc0d.jpg@3000w_1l_2o_100sh.jpg">
-    <div class="profile-name">刘兴龙</div>
+        <script>
+            // get user agent
+            var browser = {
+                versions: function () {
+                    var u = window.navigator.userAgent;
+                    return {
+                        userAgent: u,
+                        trident: u.indexOf('Trident') > -1, //IE内核
+                        presto: u.indexOf('Presto') > -1, //opera内核
+                        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+                        iPad: u.indexOf('iPad') > -1, //是否为iPad
+                        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+                        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+                        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+                    };
+                }()
+            }
+            console.log("userAgent:" + browser.versions.userAgent);
+            // callback
+            function fontLoaded() {
+                console.log('font loaded');
+                if (document.getElementsByClassName('site-intro-meta')) {
+                    document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+                    document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+                    var postIntros = document.getElementsByClassName('post-intros')[0]
+                    if (postIntros) {
+                        postIntros.classList.add('post-fade-in');
+                    }
+                }
+            }
+            // UC不支持跨域，所以直接显示
+            function asyncCb() {
+                if (browser.versions.uc) {
+                    console.log("UCBrowser");
+                    fontLoaded();
+                } else {
+                    WebFont.load({
+                        custom: {
+                            families: ['Oswald-Regular']
+                        },
+                        loading: function () {  //所有字体开始加载
+                            // console.log('loading');
+                        },
+                        active: function () {  //所有字体已渲染
+                            fontLoaded();
+                        },
+                        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+                            console.log('inactive: timeout');
+                            fontLoaded();
+                        },
+                        timeout: 5000 // Set the timeout to two seconds
+                    });
+                }
+            }
+            function asyncErr() {
+                console.warn('script load from CDN failed, will load local script')
+            }
+            // load webfont-loader async, and add callback function
+            function async(u, cb, err) {
+                var d = document, t = 'script',
+                    o = d.createElement(t),
+                    s = d.getElementsByTagName(t)[0];
+                o.src = u;
+                if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+                if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+                s.parentNode.insertBefore(o, s);
+            }
+            var asyncLoadWithFallBack = function (arr, success, reject) {
+                var currReject = function () {
+                    reject()
+                    arr.shift()
+                    if (arr.length)
+                        async(arr[0], success, currReject)
+                }
+                async(arr[0], success, currReject)
+            }
+            asyncLoadWithFallBack([
+                "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js",
+                "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+                "/lib/webfontloader.min.js"
+            ], asyncCb, asyncErr)
+        </script>
+        <img class="loading" src="/assets/loading.svg"
+            style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main index-page">
+                <article class="index-post">
+                    <a class="abstract-title" href="/2018/12/12/firstblog/">
+                        <span>工作经历</span>
+                    </a>
+                    <div class="abstract-content">
+                        <h3>易拓客APP客户端</h3>
+                        <h4>项目描述</h4>
+                        <p>APP出设计稿，交互界面和视觉效果呈现，字体图标库建立.
+                            完达山商城装修改版</p>
+                        <p>负责版面设计与详情页页面填充，H5页面设计，整体网站的搭建</p>
+                        <h4>教育经历</h4>
+                        <p>吉林农业大学 计算机与科学与技术 本科 2021.1-2023.7</p>
+                        <h4>自我评价</h4>
+                        <p>性格慢热，但大方开朗。喜欢结交朋友，人缘还算不错，做事比较执着，凭能力做事</p>
+                    </div>
+                    <div class="abstract-post-meta">
+                        <!-- date  -->
+                        <div class="abstract-date">
+                            <span class="abstract-calander iconfont-archer">&#xe676;</span><span
+                                class="abstract-time">2023/3/3</span>
+                        </div>
+                        <!-- tags  -->
+                    </div>
+                </article>
+                <article class="index-post">
+                    <a class="abstract-title" href="/2018/12/12/hello-world/">
+                        <span>技术</span>
+                    </a>
+                    <div class="abstract-content">
+                        想法 Hexo 想法 documentation 想法 troubleshooting 想法， GitHub.技术技术1$ "技术"More info: WritingRun server1$
+                        技术More info: ServerGenerate static files1$ 技术More info: GeneratingDeploy to remote sites1$ 技术More
+                        info: Deployment
+                    </div>
+                    <div class="abstract-post-meta">
+                        <!-- date  -->
+                        <div class="abstract-date">
+                            <span class="abstract-calander iconfont-archer">&#xe676;</span><span
+                                class="abstract-time">2023/3/3</span>
+                        </div>
+                        <!-- tags  -->
     
-    <div class="profile-signature">
-        前端
-    </div>
-    <div class="profile-social">  
-                <a href="mailto://15694503357@163.com" class="iconfont-archer email" title="email"></a>            
-                <a href="//github.com/liu-xinglong/liu-xinglong.github.io" class="iconfont-archer github" target="_blank" title="github"></a>
-                <span class="iconfont-archer wechat" title="wechat">
-                  <img class="profile-qr" src="/assets/example_qr.png">
-                </span>
-    </div>
-        <div class="friends">
-            <div>我的经历</div>
-        </div>
-        <div class="about-me">
-            <a href="/about">关于</a>
-        </div>
-</div>
-            
+                    </div>
+                </article>
+                <!-- paginator  -->
+            </main>
+            <!-- profile -->
+            <div class="profile">
+                <img class="profile-avatar" alt="avatar"
+                    src="http://img.zcool.cn/community/0143ff58cd1717a801219c779fdc0d.jpg@3000w_1l_2o_100sh.jpg">
+                <div class="profile-name">
+                    刘兴龙
+                </div>
+                <div class="profile-signature">
+                    前端
+                </div>
+                <div class="profile-social">
+                    <a href="mailto://15694503357@163.com" class="iconfont-archer email" title="email"></a>
+                    <a href="//github.com/liu-xinglong/liu-xinglong.github.io" class="iconfont-archer github"
+                        target="_blank" title="github"></a>
+                    <span class="iconfont-archer wechat" title="wechat">
+                        <img class="profile-qr" src="/assets/example_qr.png">
+                    </span>
+                </div>
+                <div class="friends">
+                    <div>我的经历</div>
+                </div>
+                <div class="about-me">
+                    <a href="/about">关于</a>
+                </div>
+            </div>
         </div>
         <footer class="footer footer-unloaded">
-    <!-- social  -->
-    
-    <div class="social">  
-                <a href="mailto://15694503357@163.com" class="iconfont-archer email" title="email"></a>         
-                <a href="//github.com/liu-xinglong/liu-xinglong.github.io" class="iconfont-archer github" target="_blank" title="github"></a>
+            <!-- social  -->
+            <div class="social">
+                <a href="mailto://15694503357@163.com" class="iconfont-archer email" title="email"></a>
+                <a href="//github.com/liu-xinglong/liu-xinglong.github.io" class="iconfont-archer github" target="_blank"
+                    title="github"></a>
                 <span class="iconfont-archer wechat" title="wechat">
-                  <img class="profile-qr" src="/assets/example_qr.png">
+                    <img class="profile-qr" src="/assets/example_qr.png">
                 </span>
-    </div>
-    
-    <div class="busuanzi-container">
-    
-     
-    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
-    
-    </div>
-    
-</footer>
+            </div>
+        </footer>
     </div>
     <!-- toc -->
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
-    <ul class="sidebar-tabs sidebar-tabs-active-0">
-        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">首页</span></li>
-        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">标题</span></li>
-        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">文档</span></li>
-    </ul>
-    <div class="sidebar-content sidebar-content-show-archive">
-          <div class="sidebar-panel-archives">
-    <!-- 在ejs中将archive按照时间排序 -->    
-    <div class="total-and-search">
-        <div class="total-archive">
-        侧边栏
-        </div>
-        <!-- search  -->
-    </div>
-    <div class="post-archive">
-    <div class="archive-year"> 2023 </div>
-    <ul class="year-list">
-        <li class="archive-post-item">
-            <span class="archive-post-date">1</span><a class="archive-post-title" href="/2018/12/12/hello-world/">技术</a>
-        </li>
+        <ul class="sidebar-tabs sidebar-tabs-active-0">
+            <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">首页</span>
+            </li>
+            <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">标题</span></li>
+            <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">文档</span>
+            </li>
         </ul>
-    <div class="archive-year"> 2023 </div>
-    <ul class="year-list">
-        <li class="archive-post-item">
-            <span class="archive-post-date">3/2</span><a class="archive-post-title" href="/2018/12/12/firstblog/">经历</a>
-        </li>
-    </ul></div>
-  </div>
-        <div class="sidebar-panel-tags">
-    <div class="sidebar-tags-name">
-    </div>
-    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
-    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
-    缺失模块。<br>
-    1、请确保node版本大于6.2<br>
-    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
-    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
-    3、在根目录_config.yml里添加配置：
-    <pre style="color: #787878; font-size: 0.6rem;">
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true
-    date: true
-    path: true
-    text: false
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: true
-    tags: true</pre>
-    </div> 
-    <div class="sidebar-tags-list"></div>
-</div>
-        <div class="sidebar-panel-categories">
-    <div class="sidebar-categories-name">
+        <div class="sidebar-content sidebar-content-show-archive">
+            <div class="sidebar-panel-archives">
+                <!-- 在ejs中将archive按照时间排序 -->
+                <div class="total-and-search">
+                    <div class="total-archive">
+                        侧边栏
+                    </div>
+                    <!-- search  -->
+                </div>
+                <div class="post-archive">
+                    <div class="archive-year"> 2023 </div>
+                    <ul class="year-list">
+                        <li class="archive-post-item">
+                            <span class="archive-post-date">1</span><a class="archive-post-title"
+                                href="/2018/12/12/hello-world/">技术</a>
+                        </li>
+                    </ul>
+                    <div class="archive-year"> 2023 </div>
+                    <ul class="year-list">
+                        <li class="archive-post-item">
+                            <span class="archive-post-date">3/2</span><a class="archive-post-title"
+                                href="/2018/12/12/firstblog/">经历</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-panel-tags">
+                <div class="sidebar-tags-name"></div>
+                <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+                <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+                    缺失模块。<br>
+                    1、请确保node版本大于6.2<br>
+                    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+                    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content
+                        --save</span><br>
+                    3、在根目录_config.yml里添加配置：
+                    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+                        缺失模块。<br>
+                        1、请确保node版本大于6.2<br>
+                        2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+                        <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content--save</span><br>
+                        3、在根目录_config.yml里添加配置：
+                            <pre style="color: #787878; font-size: 0.6rem;">
+                                jsonContent:
+                                meta: false
+                                pages: false
+                                posts:
+                                title: true
+                                date: true
+                                path: true
+                                text: false
+                                raw: false
+                                content: false
+                                slug: false
+                                updated: false
+                                comments: false
+                                link: false
+                                permalink: false
+                                excerpt: false
+                                categories: true
+                                tags: true
+                            </pre>
+                    </div>
+                    <div class="sidebar-tags-list"></div>
+                </div>
+                <div class="sidebar-panel-categories">
+                    <div class="sidebar-categories-name">
     
-    </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
-    </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "John Doe"
-    }
-</script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
-    <!-- busuanzi  -->
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <!-- CNZZ  -->
+                    </div>
+                    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+                    <div class="sidebar-categories-list"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var siteMeta = {
+                root: "/",
+                author: "Angus"
+            }
+        </script>
+        <!-- CDN failover -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+        <script type="text/javascript">
+            if (typeof window.$ === 'undefined') {
+                console.warn('jquery load from jsdelivr failed, will load local script')
+                document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+            }
+        </script>
+        <script src="/scripts/main.js"></script>
+        <!-- algolia -->
+        <!-- busuanzi  -->
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <!-- CNZZ  -->
     </div>
     <!-- async load share.js -->
 </body>
